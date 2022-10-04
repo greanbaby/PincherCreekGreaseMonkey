@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Lab Gyn Cytology Prevention Button
 // @namespace ScottyG
-// @description Adds buttons to the lab and document screens which allow access to screening reminders as ticklers or preventions
+// @description Adds Pap Prevention button to lab screen when viewing Gyn Cytology Report
 // @include  *lab/CA/ALL/labDisplay.jsp*
 // @version  1.0
 // @grant    none

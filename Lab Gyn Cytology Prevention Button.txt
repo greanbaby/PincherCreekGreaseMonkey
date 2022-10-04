@@ -3,18 +3,13 @@
 // @namespace ScottyG
 // @description Adds buttons to the lab and document screens which allow access to screening reminders as ticklers or preventions
 // @include  *lab/CA/ALL/labDisplay.jsp*
-// @version  6.4
+// @version  1.0
 // @grant    none
 // ==/UserScript==
-
 /**
  * @author Scott Gingras Sept. 23, 2022
- */
-
-/**
  * btnRemind - Only display button if this is a GYN CYTOLOGY REPORT
  */
-
 const tblDiscs = document.getElementById( 'tblDiscs' ).innerHTML;
 if ( tblDiscs.indexOf( 'testName=GYN CYTOLOGY REPORT' ) > -1 ) {
     let btnRemind = document.createElement( 'input' );

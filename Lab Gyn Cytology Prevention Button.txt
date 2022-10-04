@@ -1,0 +1,78 @@
+// ==UserScript==
+// @name     Lab Gyn Cytology Prevention Button
+// @namespace ScottyG
+// @description Adds buttons to the lab and document screens which allow access to screening reminders as ticklers or preventions
+// @include  *lab/CA/ALL/labDisplay.jsp*
+// @version  6.4
+// @grant    none
+// ==/UserScript==
+
+/**
+ * @author Scott Gingras Sept. 23, 2022
+ */
+
+/**
+ * btnRemind - Only display button if this is a GYN CYTOLOGY REPORT
+ */
+
+const tblDiscs = document.getElementById( 'tblDiscs' ).innerHTML;
+if ( tblDiscs.indexOf( 'testName=GYN CYTOLOGY REPORT' ) > -1 ) {
+    let btnRemind = document.createElement( 'input' );
+    btnRemind.onclick = fncRemindButton;
+    btnRemind.setAttribute( 'style', 'font-size:14px; position:absolute; top:50px; right:322px; background-color: aqua;' );
+    btnRemind.type = 'button';
+    btnRemind.value = 'Pap Prevention';
+    document.body.appendChild( btnRemind );
+}
+
+/**
+ * urlStart - the start of the URL to generate links
+ *     for example: "https://location.host.com/pincher/"
+ *
+ * strPatientDemographicNumber - String containing the patient's demographic num
+ */
+const a = ( window.location.pathname.split( '/', 2 ) ),
+      b = ( a.slice( 1 ) ),
+      urlStart = ( 'https://' + location.host + '/' + b + '/' );
+
+let strPatientDemographicNumber = fncPatientDemographicNumberFromURL();
+
+/**
+ * If we did not read the demographic number from the URL then attempt to get it off the page
+ */
+if ( !strPatientDemographicNumber ) {
+    const mytag = document.getElementsByTagName( 'a' );
+    for ( let i = 0; i < mytag.length; i++ ) {
+        const onclickvalue = mytag[ i ].getAttribute( 'onclick' );
+        if ( onclickvalue && onclickvalue.indexOf( 'demo=' ) > - 1 ) {
+            const pstart = onclickvalue.indexOf( 'demo=' );
+            const pend = onclickvalue.indexOf( '&other' );
+            strPatientDemographicNumber = onclickvalue.substring( pstart + 5, pend );
+            break;
+        }
+    }
+}
+
+/**
+ * fncRemindButton - Generate reminder
+ * @see btnRemind
+ */
+function fncRemindButton() {
+    if ( strPatientDemographicNumber ) {
+        
+    let typePrevention = 'PAP';
+        window.open( urlStart + 
+                    'oscarPrevention/AddPreventionData.jsp?prevention=' + typePrevention + 
+                    '&demographic_no=' + strPatientDemographicNumber, '_blank', 'width=800, height=500')
+    }
+}
+
+/**
+ * fncPatientDemographicNumberFromURL - Read Patient Demographic Number from URL
+ * @returns strPatientDemographicNumber
+ */
+function fncPatientDemographicNumberFromURL() {    
+    const qryString = window.location.search,    
+        urlParams = new URLSearchParams( qryString );
+    return urlParams.get( 'demographicId' );
+}

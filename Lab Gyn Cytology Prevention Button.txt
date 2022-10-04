@@ -55,10 +55,10 @@ if ( !strPatientDemographicNumber ) {
 function fncRemindButton() {
     if ( strPatientDemographicNumber ) {
         
-    let typePrevention = 'PAP';
-        window.open( urlStart + 
-                    'oscarPrevention/AddPreventionData.jsp?prevention=' + typePrevention + 
-                    '&demographic_no=' + strPatientDemographicNumber, '_blank', 'width=800, height=500')
+    const typePrevention = 'PAP';
+    window.open( urlStart + 
+                'oscarPrevention/AddPreventionData.jsp?prevention=' + typePrevention + 
+                '&demographic_no=' + strPatientDemographicNumber, '_blank', 'width=800, height=500' );
     }
 }
 

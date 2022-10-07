@@ -36,15 +36,12 @@ let strPatientDemographicNumber = fncPatientDemographicNumberFromURL();
  * If we did not read the demographic number from the URL then attempt to get it off the page
  */
 if ( !strPatientDemographicNumber ) {
-    const mytag = document.getElementsByTagName( 'a' );
-    for ( let i = 0; i < mytag.length; i++ ) {
-        const onclickvalue = mytag[ i ].getAttribute( 'onclick' );
-        if ( onclickvalue && onclickvalue.indexOf( 'demo=' ) > - 1 ) {
-            const pstart = onclickvalue.indexOf( 'demo=' );
-            const pend = onclickvalue.indexOf( '&other' );
-            strPatientDemographicNumber = onclickvalue.substring( pstart + 5, pend );
-            break;
-        }
+    const NarList = document.getElementsByClassName('NarrativeRes'),
+        demopos = ( ( NarList[ 1 ].innerHTML ).indexOf( 'demo=' ) ),
+        demoend = ( NarList[ 1 ].innerHTML ).indexOf( '&', demopos ),
+        demono = ( NarList[ 1 ].innerHTML ).substring( demopos + 5, demoend );
+    if ( demono ) {
+        strPatientDemographicNumber = demono;
     }
 }
 

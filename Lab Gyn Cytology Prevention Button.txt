@@ -3,7 +3,9 @@
 // @namespace ScottyG
 // @description Adds Pap Prevention button to lab screen when viewing Gyn Cytology Report
 // @include  *lab/CA/ALL/labDisplay.jsp*
-// @version  1.1
+// @include  *dms/MultiPageDocDisplay.jsp?segmentID*
+// @include  *dms/showDocument.jsp?inWindow*
+// @version  1.2
 // @grant    none
 // ==/UserScript==
 /**

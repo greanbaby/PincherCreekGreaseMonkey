@@ -74,7 +74,6 @@ function labOpenAll() {
 
                 divElement = field2[ i ]
                 const aElements = divElement.getElementsByTagName( "a" )
-                let allHref = ""
 
                 // open every lab version in a new tab with the All link
                 for ( let i = 0; i < aElements.length; i++ ) {

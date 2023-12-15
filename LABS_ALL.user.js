@@ -81,19 +81,19 @@ function labOpenAll() {
                     if ( aElements[ i ].innerHTML === "All" ) {
 
                         // get the text of the onClick attribute
-                        const onClick = aElements[ i ].getAttribute( "onClick" )
+                        const onClick = aElements[ i ].getAttribute( "onClick" ),
 
                         // get the position of the first single quote
-                        const firstQuote = onClick.indexOf( "'" )
+                            firstQuote = onClick.indexOf( "'" ),
                         
                         // get the position of the second single quote
-                        const secondQuote = onClick.indexOf( "'", firstQuote + 1 )
+                            secondQuote = onClick.indexOf( "'", firstQuote + 1 ),
                         
                         // get the substring between the quotes
-                        const url = onClick.substring( firstQuote + 3, secondQuote )
+                            url = onClick.substring( firstQuote + 3, secondQuote ),
                         
                         // fullUrl = origin + url
-                        const fullUrl = origin + juno + url
+                            fullUrl = origin + juno + url
 
                         // if fullUrl is not already in the labsOpened array
                         // then open it in a new tab and add it to the array
